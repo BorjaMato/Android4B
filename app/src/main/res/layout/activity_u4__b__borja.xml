@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".U4_B_Borja">
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnShowDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/btnShowDialog"
+            android:onClick="btnShow"/>
+
+        <Button
+            android:id="@+id/btnDialogFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/btnDialogFragment"
+            android:onClick="btnDialog"/>
+
+        <TextView
+            android:id="@+id/tvDialogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:id="@+id/ll_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etElementosLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/etAñadir"/>
+
+            <Button
+                android:id="@+id/btnEngadir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEngadir"
+                android:onClick="btnClick"/>
+
+
+    </LinearLayout>
+</RelativeLayout>

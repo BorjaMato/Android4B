@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">U4_B_Borja</string>
+    <string name="btnShowDialog">Show Dialog</string>
+    <string name="btnDialogFragment">Dialog Fragment</string>
+    <string name="btnEngadir">Añadir</string>
+    <string name="etAñadir">Añadir elemento</string>
+</resources>
