@@ -7,8 +7,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class dialogFragment extends DialogFragment {
@@ -33,6 +36,8 @@ public class dialogFragment extends DialogFragment {
                         Toast.makeText(getActivity(), "Premches 'Aceptar'", Toast.LENGTH_SHORT).show();
                         U4_B_Borja.cambiarChecks(check);
                         sobreescribirFichero(check);
+                        U4_B_Borja.limpiarArrListDatos();
+                        cargarListaDatos();
                     }
                 });
 
@@ -59,6 +64,31 @@ public class dialogFragment extends DialogFragment {
             osw1.close();
         }catch (Exception e){
             Log.e("Error","Fallo Sobreescribir checks");
+        }
+    }
+
+    public void cargarListaDatos(){
+        String checks="";
+        String linea="";
+        TextView tv=getActivity().findViewById(R.id.tvDialogo);
+        tv.setText("");
+        try {
+            //BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(nomeFicheiro)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(getActivity().openFileInput(U4_B_Borja.nomeChecks)));
+            BufferedReader brr= new BufferedReader(new InputStreamReader(getActivity().openFileInput(U4_B_Borja.nomeFicheiro)));
+            while ((checks=br.readLine())!=null){
+                if((linea=brr.readLine())!=null) {
+                    if (checks.equals("true")) {
+                        U4_B_Borja.listaDatos.add(linea);
+                        tv.append(linea+"\n");
+                    }else{
+                        U4_B_Borja.listaDatos.add(linea);
+                    }
+                }
+            }
+            brr.close();
+            br.close();
+        } catch (Exception ex) {
         }
     }
 

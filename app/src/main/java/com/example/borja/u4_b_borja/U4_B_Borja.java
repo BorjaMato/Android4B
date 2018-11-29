@@ -20,11 +20,11 @@ import android.widget.Toast;
 
 
 public class U4_B_Borja extends AppCompatActivity {
-    private static String nomeFicheiro = "Datos.txt";
+    public static String nomeFicheiro = "Datos.txt";
     public static String nomeChecks = "Checks.txt";
     private String[] elementosLista=new String[]{"Lugo","Ourense","Vigo","Pontevedra","Santiago","Coruña"};
-    private static ArrayList<String> listaDatos=new ArrayList<>();
-    private static ArrayList<Boolean> listaChecks=new ArrayList<>();
+    public static ArrayList<String> listaDatos=new ArrayList<>();
+    public static ArrayList<Boolean> listaChecks=new ArrayList<>();
 
     //--------------------------------------------Iniciar Proyecto------------------------------------------------------\\
     @Override
@@ -38,7 +38,7 @@ public class U4_B_Borja extends AppCompatActivity {
     }
 
     //--------------------------------------------Limpiar Datos------------------------------------------------------\\
-    public void limpiarArrListDatos(){
+    public static void limpiarArrListDatos(){
         listaDatos.clear();
     }
 
@@ -86,15 +86,25 @@ public class U4_B_Borja extends AppCompatActivity {
     //--------------------------------------------Cargar ArrayList------------------------------------------------------\\
 
     public void cargarListaDatos(){
+        String checks="";
         String linea="";
         TextView tv=findViewById(R.id.tvDialogo);
         tv.setText("");
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(nomeFicheiro)));
-            while ((linea=br.readLine())!=null){
-                listaDatos.add(linea);
-                tv.append(linea+"\n");
+            //BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(nomeFicheiro)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(nomeChecks)));
+            BufferedReader brr= new BufferedReader(new InputStreamReader(openFileInput(nomeFicheiro)));
+            while ((checks=br.readLine())!=null){
+                if((linea=brr.readLine())!=null) {
+                    if (checks.equals("true")) {
+                        listaDatos.add(linea);
+                        tv.append(linea+"\n");
+                    }else{
+                        listaDatos.add(linea);
+                    }
+                }
             }
+            brr.close();
             br.close();
         } catch (Exception ex) {
             crearDatosDefault();
@@ -220,6 +230,8 @@ public class U4_B_Borja extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Premches 'Aceptar'", Toast.LENGTH_SHORT).show();
                 U4_B_Borja.cambiarChecks(check);
                 sobreescribirFicheroCheck(check);
+                limpiarArrListDatos();
+                cargarListaDatos();
             }
         });
 
